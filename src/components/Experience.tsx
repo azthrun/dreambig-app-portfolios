@@ -1,23 +1,41 @@
-import React from 'react';
-import { portfolioData } from '../data/portfolioData';
+import React from "react";
+import { portfolioData } from "../data/portfolioData";
 
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="py-20">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Experience</h2>
-        <div className="max-w-4xl mx-auto">
-          {portfolioData.experiences.map((experience, index) => (
-            <div key={index} className="mb-8 p-6 border rounded-lg shadow-lg bg-white">
-              <h3 className="text-2xl font-bold">{experience.role}</h3>
-              <p className="text-xl text-gray-600">{experience.company} | {experience.duration}</p>
-              <ul className="mt-4 list-disc list-inside">
-                {experience.description.map((item, i) => (
-                  <li key={i} className="text-gray-700">{item}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+    <section id="experience" className="py-24">
+      <div className="mx-auto max-w-6xl px-6">
+        <h2 className="mb-12 text-center text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+          Experience
+        </h2>
+        <div className="relative mx-auto max-w-4xl">
+          <div
+            className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-indigo-200 via-slate-200 to-transparent sm:left-6"
+            aria-hidden="true"
+          ></div>
+          <div className="space-y-8">
+            {portfolioData.experiences.map((experience, index) => (
+              <div
+                key={index}
+                className="group relative ml-10 rounded-xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md sm:ml-12"
+              >
+                <div className="absolute left-2 top-6 h-3 w-3 rounded-full border border-white bg-indigo-500 shadow sm:left-3"></div>
+                <h3 className="text-xl font-bold text-slate-900">
+                  {experience.role}
+                </h3>
+                <p className="text-sm font-medium text-slate-600">
+                  {experience.company} • {experience.duration}
+                </p>
+                <ul className="mt-4 list-disc space-y-1 pl-5 text-slate-700">
+                  {experience.description.map((item, i) => (
+                    <li key={i} className="animate-fade-in">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
