@@ -25,7 +25,9 @@ const Introduction: React.FC = () => {
             className="group inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-3 text-white shadow-lg shadow-indigo-600/20 transition hover:brightness-110"
           >
             View Projects
-            <span className="transition-transform group-hover:translate-x-0.5">→</span>
+            <span className="material-symbols-outlined text-[20px] leading-none transition-transform group-hover:translate-x-0.5">
+              arrow_forward
+            </span>
           </a>
           <a
             href="#experience"

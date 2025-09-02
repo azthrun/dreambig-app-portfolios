@@ -34,7 +34,9 @@ const Projects: React.FC = () => {
                 className="inline-flex items-center gap-2 text-indigo-600 transition hover:gap-2.5 dark:text-indigo-400"
               >
                 View Project
-                <span>→</span>
+                <span className="material-symbols-outlined text-[20px] leading-none">
+                  arrow_forward
+                </span>
               </a>
             </div>
           ))}
