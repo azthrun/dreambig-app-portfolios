@@ -28,11 +28,18 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   useEffect(() => {
     const root = document.documentElement;
+    // Add a temporary class to enable smooth theme transitions
+    root.classList.add('theme-transition');
     if (theme === 'dark') root.classList.add('dark');
     else root.classList.remove('dark');
     try {
       localStorage.setItem('theme', theme);
     } catch {}
+    // Remove the transition class after the duration
+    const timeout = window.setTimeout(() => {
+      root.classList.remove('theme-transition');
+    }, 220);
+    return () => window.clearTimeout(timeout);
   }, [theme]);
 
   const toggleTheme = () => {
