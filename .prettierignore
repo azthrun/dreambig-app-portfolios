@@ -1,0 +1,15 @@
+# Build outputs
+/dist
+/.vite
+
+# Dependencies
+node_modules
+
+# Lockfiles (optional if you don’t want them reformatted by mistake)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Misc
+coverage
+.DS_Store
