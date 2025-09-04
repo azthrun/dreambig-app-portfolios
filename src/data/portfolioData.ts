@@ -20,8 +20,8 @@ export interface PortfolioData {
 
 export const portfolioData: PortfolioData = {
   introduction: [
-    "Hello! I'm a passionate and dedicated .NET developer with a knack for building robust and scalable applications. I thrive on solving complex problems and continuously learning new technologies.",
-    "When I'm not coding, you can find me exploring the latest tech trends, contributing to open-source projects, or enjoying a good cup of coffee.",
+    "Hello! I'm a passionate software engineer with over ten years of experiences in .NET and JavaScript-based technologies, covering full-stack and mobile developments. Seeking to join a forward-thinking organization to contribute to cutting-edge product development through expertise in cloud-native applications, performance optimization, and clean code principles.",
+    "When I'm not coding, you can find me exploring the latest tech trends, spending time on open-source or home projects, enjoying a good cup of coffee, or simply relaxing with my family.",
   ],
   experiences: [
     {
