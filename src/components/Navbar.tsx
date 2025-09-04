@@ -17,25 +17,27 @@ const Navbar: React.FC = () => {
             Terry's Portfolio
           </span>
         </div>
-        <div className="hidden items-center gap-2 md:flex">
-          <button
-            onClick={() => scrollToSection('introduction')}
-            className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
-          >
-            Introduction
-          </button>
-          <button
-            onClick={() => scrollToSection('experience')}
-            className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
-          >
-            Experience
-          </button>
-          <button
-            onClick={() => scrollToSection('projects')}
-            className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
-          >
-            Projects
-          </button>
+        <div className="flex items-center gap-2">
+          <div className="hidden items-center gap-2 md:flex">
+            <button
+              onClick={() => scrollToSection('introduction')}
+              className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
+            >
+              Introduction
+            </button>
+            <button
+              onClick={() => scrollToSection('experience')}
+              className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
+            >
+              Experience
+            </button>
+            <button
+              onClick={() => scrollToSection('projects')}
+              className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
+            >
+              Projects
+            </button>
+          </div>
           <ThemeToggle />
         </div>
       </div>
