@@ -19,7 +19,7 @@ const Experience: React.FC = () => {
                 key={index}
                 className="group relative ml-10 rounded-xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md sm:ml-12 dark:border-slate-800 dark:bg-slate-800/80"
               >
-                <div className="absolute top-6 left-2 h-3 w-3 rounded-full border border-white bg-indigo-500 shadow sm:left-3 dark:border-slate-700"></div>
+                <div className="absolute top-6 left-1 h-3 w-3 rounded-full border border-white bg-indigo-500 shadow dark:border-slate-700"></div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
                   {experience.role}
                 </h3>
