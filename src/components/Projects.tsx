@@ -1,24 +1,62 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { portfolioData } from '../data/portfolioData';
 
 const Projects: React.FC = () => {
+  const projects = portfolioData.projects;
+  const [page, setPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(1);
+
+  // Determine how many cards to show per page based on viewport width
+  const computeItemsPerPage = () => {
+    if (typeof window === 'undefined') return 1;
+    if (window.matchMedia('(min-width: 1024px)').matches) return 3; // lg+
+    if (window.matchMedia('(min-width: 640px)').matches) return 2; // sm - md
+    return 1; // < sm
+  };
+
+  useEffect(() => {
+    const update = () => setItemsPerPage(computeItemsPerPage());
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  const totalPages = useMemo(
+    () => Math.max(1, Math.ceil(projects.length / itemsPerPage)),
+    [projects.length, itemsPerPage],
+  );
+
+  // Clamp page when itemsPerPage changes or data length changes
+  useEffect(() => {
+    setPage((p) => Math.min(p, totalPages - 1));
+  }, [totalPages]);
+
+  const start = page * itemsPerPage;
+  const visibleProjects = projects.slice(start, start + itemsPerPage);
+
   return (
     <section id="projects" className="bg-slate-50 py-24 dark:bg-slate-900/50">
       <div className="mx-auto max-w-6xl px-6">
         <h2 className="mb-12 text-center text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl dark:text-slate-100">
           Projects
         </h2>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {portfolioData.projects.map((project, index) => (
+        {/* Single row, paginated (no horizontal scroll) */}
+        <div className="flex w-full items-stretch justify-center gap-6 px-3 sm:px-4 md:px-6">
+          {visibleProjects.map((project, index) => (
             <div
               key={index}
-              className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-800"
+              className="group relative flex h-full shrink-0 grow-0 basis-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-md sm:basis-[calc((100%-1.5rem)/2)] lg:basis-[calc((100%-3rem)/3)] dark:border-slate-800 dark:bg-slate-800"
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-indigo-500 to-fuchsia-500 opacity-70"></div>
               <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-slate-100">
                 {project.title}
               </h3>
-              <p className="mb-4 text-slate-700 dark:text-slate-300">{project.description}</p>
+              <p
+                className="mb-4 line-clamp-2 text-slate-700 dark:text-slate-300"
+                title={project.description}
+              >
+                {project.description}
+              </p>
               <div className="mb-4 flex flex-wrap gap-2">
                 {project.technologies.map((tech, i) => (
                   <span
@@ -49,6 +87,46 @@ const Projects: React.FC = () => {
             </div>
           ))}
         </div>
+
+        {/* Paginator */}
+        {totalPages > 1 && (
+          <div className="mt-8 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              aria-label="Previous page"
+              className="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition enabled:hover:bg-slate-50 disabled:opacity-40 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:enabled:hover:bg-slate-700"
+              onClick={() => setPage((p) => Math.max(0, p - 1))}
+              disabled={page === 0}
+            >
+              ‹ Prev
+            </button>
+            <div className="flex items-center gap-2">
+              {Array.from({ length: totalPages }).map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Go to page ${i + 1}`}
+                  className={
+                    'h-2.5 w-2.5 rounded-full transition ' +
+                    (i === page
+                      ? 'bg-indigo-600 dark:bg-indigo-400'
+                      : 'bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-500')
+                  }
+                  onClick={() => setPage(i)}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              aria-label="Next page"
+              className="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition enabled:hover:bg-slate-50 disabled:opacity-40 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:enabled:hover:bg-slate-700"
+              onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+              disabled={page === totalPages - 1}
+            >
+              Next ›
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -62,4 +62,13 @@
   .animate-slide-up {
     animation: slide-up 700ms ease-out both;
   }
+
+  /* Multi-line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }

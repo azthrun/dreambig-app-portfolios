@@ -81,7 +81,7 @@ export const portfolioData: PortfolioData = {
   projects: [
     {
       title: 'Project Portfolio',
-      description: 'A personal portfolio website showcasing projects and experiences.',
+      description: 'A personal portfolio website showcasing projects and skills.',
       technologies: ['React', 'TypeScript', '.NET Core'],
       link: 'https://github.com/azthrun/dreambig-app-portfolios',
     },
@@ -92,10 +92,16 @@ export const portfolioData: PortfolioData = {
       link: 'https://github.com/azthrun/dreambig-app-faist',
     },
     {
-      title: 'Project Housey',
-      description: 'A native iOS application for inventory management using SwiftUI.',
-      technologies: ['Swift', 'SwiftUI', 'SwiftData'],
-      link: 'https://github.com/azthrun/dreambig-app-housey',
+      title: 'Repository Generator',
+      description: 'A .NET library that generates repository classes for your models.',
+      technologies: ['C#', '.NET', 'CosmosDB'],
+      link: 'https://github.com/azthrun/dreambig-repository-codegen',
+    },
+    {
+      title: 'Web3.0 Calendar',
+      description: 'A Web3 calendar application for scheduling events.',
+      technologies: ['React', 'Solidity', 'Web3.js'],
+      link: 'https://github.com/azthrun/learning-web3',
     },
   ],
 };
