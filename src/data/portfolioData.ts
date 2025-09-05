@@ -51,25 +51,10 @@ export const portfolioData: PortfolioData = {
   ],
   projects: [
     {
-      title: 'Project Alpha',
-      description:
-        'A real-time chat application built with SignalR and React, allowing users to communicate seamlessly.',
-      technologies: ['SignalR', 'React', 'TypeScript', '.NET Core'],
-      link: '#',
-    },
-    {
-      title: 'Project Beta',
-      description:
-        'A task management tool designed to help teams organize and track their work effectively.',
-      technologies: ['ASP.NET Core', 'Angular', 'SQL Server'],
-      link: '#',
-    },
-    {
-      title: 'Project Gamma',
-      description:
-        'An e-learning platform offering interactive courses and quizzes on various subjects.',
-      technologies: ['Blazor', '.NET 5', 'Azure'],
-      link: '#',
+      title: 'Project Portfolio',
+      description: 'A personal portfolio website showcasing my skills, projects, and experiences.',
+      technologies: ['React', 'TypeScript', '.NET Core'],
+      link: 'https://github.com/azthrun/dreambig-app-portfolios',
     },
   ],
 };

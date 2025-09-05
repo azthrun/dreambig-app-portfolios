@@ -32,6 +32,8 @@ const Projects: React.FC = () => {
               <a
                 href={project.link}
                 className="mt-auto inline-flex items-center gap-2 self-end text-indigo-600 transition hover:gap-2.5 dark:text-indigo-400"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 View on
                 <svg
