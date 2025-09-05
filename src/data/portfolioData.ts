@@ -72,7 +72,10 @@ export const portfolioData: PortfolioData = {
       degree: 'B.S. in Computer Science',
       institution: 'University of Houston - Clear Lake',
       duration: '2008 - 2011',
-      details: ['Scholarship recipient from 2009 to 2011.'],
+      details: [
+        'Scholarship recipient from 2009 to 2011.',
+        'Designed and developed a e-commerce website as a capstone project.',
+      ],
     },
   ],
   projects: [

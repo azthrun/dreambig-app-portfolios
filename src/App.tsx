@@ -5,6 +5,7 @@ import Experience from './components/Experience';
 import Education from './components/Education';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
+import BackToTop from './components/BackToTop';
 import './App.css';
 
 const App: React.FC = () => {
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Education />
         <Projects />
       </main>
+      <BackToTop />
       <Footer />
     </div>
   );
