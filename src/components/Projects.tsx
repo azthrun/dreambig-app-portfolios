@@ -12,7 +12,7 @@ const Projects: React.FC = () => {
           {portfolioData.projects.map((project, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-800"
+              className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-800"
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-indigo-500 to-fuchsia-500 opacity-70"></div>
               <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-slate-100">
@@ -31,12 +31,18 @@ const Projects: React.FC = () => {
               </div>
               <a
                 href={project.link}
-                className="inline-flex items-center gap-2 text-indigo-600 transition hover:gap-2.5 dark:text-indigo-400"
+                className="mt-auto inline-flex items-center gap-2 self-end text-indigo-600 transition hover:gap-2.5 dark:text-indigo-400"
               >
-                View Project
-                <span className="material-symbols-outlined text-[20px] leading-none">
-                  arrow_forward
-                </span>
+                View on
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5"
+                  fill="currentColor"
+                  focusable="false"
+                >
+                  <path d="M12 .297c-6.6 0-12 5.4-12 12 0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6 0-.3 0-1.1 0-2.1-3.3.7-4-.8-4-.8-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.3-1.1.6-1.3-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.4 1.2-3.3-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.2 1-.3 2.1-.5 3.2-.5s2.2.2 3.2.5C19 5.4 20 5.7 20 5.7c.6 1.7.2 3 .1 3.3.8.9 1.2 2 1.2 3.3 0 4.5-2.7 5.5-5.3 5.8.4.3.7.9.7 1.8 0 1.3 0 2.4 0 2.8 0 .3.2.7.8.6C20.6 22.1 24 17.6 24 12.3c0-6.6-5.4-12-12-12z" />
+                </svg>
               </a>
             </div>
           ))}
