@@ -32,6 +32,12 @@ const Navbar: React.FC = () => {
               Experience
             </button>
             <button
+              onClick={() => scrollToSection('education')}
+              className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
+            >
+              Education
+            </button>
+            <button
               onClick={() => scrollToSection('projects')}
               className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
             >

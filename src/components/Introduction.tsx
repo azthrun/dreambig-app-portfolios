@@ -53,6 +53,12 @@ const Introduction: React.FC = () => {
               >
                 Experience
               </a>
+              <a
+                href="#education"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-slate-800 shadow-sm transition hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
+              >
+                Education
+              </a>
             </div>
           </div>
         </div>

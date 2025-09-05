@@ -12,9 +12,17 @@ export interface Project {
   link: string;
 }
 
+export interface Education {
+  degree: string;
+  institution: string;
+  duration: string;
+  details?: string[];
+}
+
 export interface PortfolioData {
   introduction: string[];
   experiences: Experience[];
+  education: Education[];
   projects: Project[];
 }
 
@@ -49,12 +57,36 @@ export const portfolioData: PortfolioData = {
       ],
     },
   ],
+  education: [
+    {
+      degree: 'M.S. in Software Engineering',
+      institution: 'University of Houston - Clear Lake',
+      duration: '2011 - 2013',
+      details: [
+        'Specialized in Software Development Life Cycle and Software Design Patterns.',
+        'Graduate teaching assistant and research assistant for robotic design and application development.',
+        'STEM scholarship recipient throughout the program.',
+      ],
+    },
+    {
+      degree: 'B.S. in Computer Science',
+      institution: 'University of Houston - Clear Lake',
+      duration: '2008 - 2011',
+      details: ['Scholarship recipient from 2009 to 2011.'],
+    },
+  ],
   projects: [
     {
       title: 'Project Portfolio',
       description: 'A personal portfolio website showcasing my skills, projects, and experiences.',
       technologies: ['React', 'TypeScript', '.NET Core'],
       link: 'https://github.com/azthrun/dreambig-app-portfolios',
+    },
+    {
+      title: 'Project Faist',
+      description: 'A native iOS application for tasks management',
+      technologies: ['Swift', 'SwiftUI', 'SwiftData'],
+      link: 'https://github.com/azthrun/dreambig-app-faist',
     },
   ],
 };

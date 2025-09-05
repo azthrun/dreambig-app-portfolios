@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Introduction from './components/Introduction';
 import Experience from './components/Experience';
+import Education from './components/Education';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 import './App.css';
@@ -13,6 +14,7 @@ const App: React.FC = () => {
       <main className="pt-16">
         <Introduction />
         <Experience />
+        <Education />
         <Projects />
       </main>
       <Footer />
