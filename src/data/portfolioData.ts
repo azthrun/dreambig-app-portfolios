@@ -81,15 +81,21 @@ export const portfolioData: PortfolioData = {
   projects: [
     {
       title: 'Project Portfolio',
-      description: 'A personal portfolio website showcasing my skills, projects, and experiences.',
+      description: 'A personal portfolio website showcasing projects and experiences.',
       technologies: ['React', 'TypeScript', '.NET Core'],
       link: 'https://github.com/azthrun/dreambig-app-portfolios',
     },
     {
       title: 'Project Faist',
-      description: 'A native iOS application for tasks management',
+      description: 'A native iOS application for tasks management using SwiftUI.',
       technologies: ['Swift', 'SwiftUI', 'SwiftData'],
       link: 'https://github.com/azthrun/dreambig-app-faist',
+    },
+    {
+      title: 'Project Housey',
+      description: 'A native iOS application for inventory management using SwiftUI.',
+      technologies: ['Swift', 'SwiftUI', 'SwiftData'],
+      link: 'https://github.com/azthrun/dreambig-app-housey',
     },
   ],
 };
