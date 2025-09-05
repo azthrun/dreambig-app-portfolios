@@ -1,5 +1,6 @@
 import React from 'react';
 import { portfolioData } from '../data/portfolioData';
+import profileImg from '../assets/profile.png';
 
 const Introduction: React.FC = () => {
   return (
@@ -16,10 +17,15 @@ const Introduction: React.FC = () => {
             {/* Row: Profile picture next to H1 */}
             <div className="flex items-center justify-center gap-6 md:justify-start">
               <div className="flex-shrink-0">
-                <div
-                  aria-label="Profile picture placeholder"
-                  className="animate-slide-up h-28 w-28 rounded-full bg-slate-300 ring-4 ring-white sm:h-36 sm:w-36 md:h-44 md:w-44 dark:bg-slate-700 dark:ring-slate-900"
-                />
+                <div className="animate-slide-up h-28 w-28 overflow-hidden rounded-full ring-4 ring-white sm:h-36 sm:w-36 md:h-44 md:w-44 dark:ring-slate-900">
+                  <img
+                    src={profileImg}
+                    alt="Profile"
+                    className="h-full w-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </div>
               </div>
               <h1 className="animate-slide-up text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl dark:text-slate-100">
                 Building robust, scalable apps with .NET and modern web tech
