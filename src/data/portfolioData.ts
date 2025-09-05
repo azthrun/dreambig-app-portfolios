@@ -81,7 +81,7 @@ export const portfolioData: PortfolioData = {
   projects: [
     {
       title: 'Project Portfolio',
-      description: 'A personal portfolio website showcasing projects and experiences.',
+      description: 'A personal portfolio website showcasing projects and skills.',
       technologies: ['React', 'TypeScript', '.NET Core'],
       link: 'https://github.com/azthrun/dreambig-app-portfolios',
     },
