@@ -12,24 +12,35 @@ const ThemeToggle: React.FC = () => {
       aria-pressed={theme === 'dark'}
     >
       {theme === 'light' ? (
+        // Moon (indicates switch to dark mode)
         <svg
           aria-hidden="true"
           className="h-5 w-5"
           viewBox="0 0 24 24"
-          fill="currentColor"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
           focusable="false"
         >
-          <path d="M20 12.41A8 8 0 1 1 11.59 4 7 7 0 0 0 20 12.41z" />
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
         </svg>
       ) : (
+        // Sun (indicates switch to light mode)
         <svg
           aria-hidden="true"
           className="h-5 w-5"
           viewBox="0 0 24 24"
-          fill="currentColor"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
           focusable="false"
         >
-          <path d="M6.76 4.84 5.34 3.42 3.92 4.84l1.42 1.42 1.42-1.42zm10.48 0 1.42-1.42 1.42 1.42-1.42 1.42-1.42-1.42zM12 2h0v2h0V2zm0 18h0v2h0v-2zM4 12H2v0h2v0zm18 0h-2v0h2v0zM6.76 19.16 5.34 20.58 3.92 19.16l1.42-1.42 1.42 1.42zM19.16 17.74l1.42 1.42-1.42 1.42-1.42-1.42 1.42-1.42zM12 6a6 6 0 1 0 0 12 6 6 0 0 0 0-12z" />
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
         </svg>
       )}
     </button>
