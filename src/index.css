@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* Use class-based dark mode in Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Base tweaks */
 @layer base {
   :root {
