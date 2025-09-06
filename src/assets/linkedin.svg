@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <title>LinkedIn</title>
+  <!-- Rounded square background using LinkedIn brand blue -->
+  <rect x="1" y="1" width="22" height="22" rx="4" ry="4" fill="#0A66C2" />
+  <!-- "in" word in white. Using text keeps it simple; sized and positioned for 24px canvas. -->
+  <text x="12" y="17" text-anchor="middle" font-family="Segoe UI, Roboto, Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#ffffff">in</text>
+</svg>

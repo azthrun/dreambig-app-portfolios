@@ -10,7 +10,7 @@ const Experience: React.FC = () => {
         </h2>
         <div className="relative mx-auto max-w-4xl">
           <div
-            className="absolute top-0 left-4 h-full w-px bg-gradient-to-b from-indigo-200 via-slate-200 to-transparent sm:left-6 dark:from-indigo-900/50 dark:via-slate-800/50"
+            className="absolute top-0 left-4 h-full w-[3px] bg-gradient-to-b from-indigo-200 via-slate-200 to-transparent sm:left-6 dark:from-indigo-900/50 dark:via-slate-800/50"
             aria-hidden="true"
           ></div>
           <div className="space-y-8">

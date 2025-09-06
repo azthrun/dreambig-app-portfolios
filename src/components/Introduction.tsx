@@ -1,6 +1,7 @@
 import React from 'react';
 import { portfolioData } from '../data/portfolioData';
 import profileImg from '../assets/profile.png';
+import linkedinIcon from '../assets/linkedin.svg';
 
 const Introduction: React.FC = () => {
   return (
@@ -43,24 +44,34 @@ const Introduction: React.FC = () => {
             ))}
 
             {/* Actions */}
-            <div className="mt-10 flex items-center justify-center gap-4">
+            <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
               <a
                 href="#projects"
-                className="group inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-3 text-white shadow-lg shadow-indigo-600/20 transition hover:brightness-110"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-indigo-600 px-6 py-3 text-white shadow-lg shadow-indigo-600/20 transition hover:brightness-110"
               >
                 View Projects
               </a>
               <a
                 href="#experience"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-slate-800 shadow-sm transition hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-slate-800 shadow-sm transition hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
               >
                 Experience
               </a>
               <a
                 href="#education"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-slate-800 shadow-sm transition hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-slate-800 shadow-sm transition hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
               >
                 Education
+              </a>
+              <a
+                href={portfolioData.linkedInProfileSite}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-slate-800 shadow-sm transition hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
+                aria-label="LinkedIn profile"
+              >
+                Find me on
+                <img src={linkedinIcon} alt="LinkedIn" className="h-5 w-5" />
               </a>
             </div>
           </div>
