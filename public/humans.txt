@@ -1,0 +1,9 @@
+/* TEAM */
+Developer: Terry Chen
+Site: DreamBig Portfolio
+
+/* THANKS */
+Built with React, Vite, and Tailwind CSS.
+
+/* LAST UPDATE */
+2025-09-05
