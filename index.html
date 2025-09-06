@@ -4,15 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Terry Chen’s portfolio showcasing .NET and modern web development projects, experience, and education."
+    />
+    <meta property="og:title" content="Terry Chen – DreamBig Portfolio" />
+    <meta
+      property="og:description"
+      content="Explore Terry’s software projects, professional experience, and education in a fast, accessible portfolio."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#111827" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Material Symbols (Outlined) for icons -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
       rel="stylesheet"
     />
     <script>
@@ -26,6 +32,52 @@
         } catch (e) {}
       })();
     </script>
+
+    <script>
+      // Configure chat widget but defer loading its script to idle/interaction
+      window.chtlConfig = { chatbotId: '9264177668' };
+      (function deferChat() {
+        var loaded = false;
+        function load() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.id = 'chatling-embed-script';
+          s.dataset.id = '9264177668';
+          s.src = 'https://chatling.ai/js/embed.js';
+          document.head.appendChild(s);
+          // Clean up listeners after load
+          removeListeners();
+        }
+        function onFirstInteraction() {
+          load();
+        }
+        function removeListeners() {
+          window.removeEventListener('scroll', onFirstInteraction);
+          window.removeEventListener('mousemove', onFirstInteraction);
+          window.removeEventListener('keydown', onFirstInteraction);
+          window.removeEventListener('touchstart', onFirstInteraction);
+        }
+        // Prefer idle callback
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(
+            function () {
+              load();
+            },
+            { timeout: 4000 },
+          );
+        } else {
+          setTimeout(load, 4000);
+        }
+        // Also load after first user interaction
+        window.addEventListener('scroll', onFirstInteraction, { once: true, passive: true });
+        window.addEventListener('mousemove', onFirstInteraction, { once: true });
+        window.addEventListener('keydown', onFirstInteraction, { once: true });
+        window.addEventListener('touchstart', onFirstInteraction, { once: true, passive: true });
+      })();
+    </script>
+
     <title>Terry Chen - &copy;Dreambig Portfolio</title>
   </head>
   <body

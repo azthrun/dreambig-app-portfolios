@@ -1,10 +1,11 @@
 import React from 'react';
 import { portfolioData } from '../data/portfolioData';
 import profileImg from '../assets/profile.png';
+import linkedinIcon from '../assets/linkedin.svg';
 
 const Introduction: React.FC = () => {
   return (
-    <section id="introduction" className="relative isolate overflow-hidden py-28">
+    <section id="introduction" className="relative isolate scroll-mt-16 overflow-hidden py-28">
       <div className="pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(50%_50%_at_50%_0%,black,transparent)] opacity-30 dark:opacity-50">
         <div className="absolute inset-x-0 top-[-10rem] flex justify-center blur-3xl">
           <div className="h-[28rem] w-[72rem] bg-gradient-to-r from-indigo-400 to-fuchsia-400 opacity-30 dark:from-indigo-900/70 dark:to-fuchsia-900/70"></div>
@@ -20,7 +21,7 @@ const Introduction: React.FC = () => {
                 <div className="animate-slide-up h-28 w-28 overflow-hidden rounded-full ring-4 ring-white sm:h-36 sm:w-36 md:h-44 md:w-44 dark:ring-slate-900">
                   <img
                     src={profileImg}
-                    alt="Profile"
+                    alt="Profile picture of the developer"
                     className="h-full w-full object-cover"
                     loading="eager"
                     decoding="async"
@@ -43,24 +44,34 @@ const Introduction: React.FC = () => {
             ))}
 
             {/* Actions */}
-            <div className="mt-10 flex items-center justify-center gap-4">
+            <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
               <a
                 href="#projects"
-                className="group inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-3 text-white shadow-lg shadow-indigo-600/20 transition hover:brightness-110"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-indigo-600 px-6 py-3 text-white shadow-lg shadow-indigo-600/20 transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 View Projects
               </a>
               <a
                 href="#experience"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-slate-800 shadow-sm transition hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-slate-800 shadow-sm transition hover:border-indigo-300 hover:text-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
               >
                 Experience
               </a>
               <a
                 href="#education"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-slate-800 shadow-sm transition hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-slate-800 shadow-sm transition hover:border-indigo-300 hover:text-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
               >
                 Education
+              </a>
+              <a
+                href={portfolioData.linkedInProfileSite}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-slate-800 shadow-sm transition hover:border-indigo-300 hover:text-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-600 dark:hover:text-indigo-400"
+                aria-label="Open LinkedIn profile in a new tab"
+              >
+                Find me on
+                <img src={linkedinIcon} alt="" aria-hidden="true" className="h-5 w-5" />
               </a>
             </div>
           </div>

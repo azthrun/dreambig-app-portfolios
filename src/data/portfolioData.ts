@@ -20,6 +20,7 @@ export interface Education {
 }
 
 export interface PortfolioData {
+  linkedInProfileSite: string;
   introduction: string[];
   experiences: Experience[];
   education: Education[];
@@ -27,6 +28,7 @@ export interface PortfolioData {
 }
 
 export const portfolioData: PortfolioData = {
+  linkedInProfileSite: 'https://www.linkedin.com/in/azthrunzalao0o/',
   introduction: [
     "Hello! I'm a passionate software engineer with over ten years of experiences in .NET and JavaScript-based technologies, covering full-stack and mobile developments. Seeking to join a forward-thinking organization to contribute to cutting-edge product development through expertise in cloud-native applications, performance optimization, and clean code principles.",
     "When I'm not coding, you can find me exploring the latest tech trends, spending time on open-source or home projects, enjoying a good cup of coffee, or simply relaxing with my family.",
@@ -86,12 +88,6 @@ export const portfolioData: PortfolioData = {
       link: 'https://github.com/azthrun/dreambig-app-portfolios',
     },
     {
-      title: 'Project Faist',
-      description: 'A native iOS application for tasks management using SwiftUI.',
-      technologies: ['Swift', 'SwiftUI', 'SwiftData'],
-      link: 'https://github.com/azthrun/dreambig-app-faist',
-    },
-    {
       title: 'Repository Generator',
       description: 'A .NET library that generates repository classes for your models.',
       technologies: ['C#', '.NET', 'CosmosDB'],
@@ -102,6 +98,12 @@ export const portfolioData: PortfolioData = {
       description: 'A Web3 calendar application for scheduling events.',
       technologies: ['React', 'Solidity', 'Web3.js'],
       link: 'https://github.com/azthrun/learning-web3',
+    },
+    {
+      title: 'Project Faist',
+      description: 'A native iOS application for tasks management using SwiftUI.',
+      technologies: ['Swift', 'SwiftUI', 'SwiftData'],
+      link: 'https://github.com/azthrun/dreambig-app-faist',
     },
   ],
 };

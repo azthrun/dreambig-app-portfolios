@@ -37,6 +37,35 @@
 
 /* Utilities for simple entrance animations */
 @layer utilities {
+  /* Screen-reader only utility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  .not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Focus styles visible only for keyboard navigation */
+  :where(a, button, [role='button'], input, select, textarea):focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 2px;
+  }
+
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -61,6 +90,12 @@
   }
   .animate-slide-up {
     animation: slide-up 700ms ease-out both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in,
+    .animate-slide-up {
+      animation: none !important;
+    }
   }
 
   /* Multi-line clamp utilities */

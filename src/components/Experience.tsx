@@ -3,14 +3,14 @@ import { portfolioData } from '../data/portfolioData';
 
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="py-24">
+    <section id="experience" className="scroll-mt-16 py-24">
       <div className="mx-auto max-w-6xl px-6">
         <h2 className="mb-12 text-center text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl dark:text-slate-100">
           Experience
         </h2>
         <div className="relative mx-auto max-w-4xl">
           <div
-            className="absolute top-0 left-4 h-full w-px bg-gradient-to-b from-indigo-200 via-slate-200 to-transparent sm:left-6 dark:from-indigo-900/50 dark:via-slate-800/50"
+            className="absolute top-0 left-4 h-full w-[3px] bg-gradient-to-b from-indigo-200 via-slate-200 to-transparent sm:left-6 dark:from-indigo-900/50 dark:via-slate-800/50"
             aria-hidden="true"
           ></div>
           <div className="space-y-8">
