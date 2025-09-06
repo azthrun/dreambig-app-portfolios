@@ -20,7 +20,7 @@ const Introduction: React.FC = () => {
                 <div className="animate-slide-up h-28 w-28 overflow-hidden rounded-full ring-4 ring-white sm:h-36 sm:w-36 md:h-44 md:w-44 dark:ring-slate-900">
                   <img
                     src={profileImg}
-                    alt="Profile"
+                    alt="Profile picture of the developer"
                     className="h-full w-full object-cover"
                     loading="eager"
                     decoding="async"
