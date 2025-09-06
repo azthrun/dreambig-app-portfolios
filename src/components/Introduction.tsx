@@ -5,7 +5,10 @@ import linkedinIcon from '../assets/linkedin.svg';
 
 const Introduction: React.FC = () => {
   return (
-    <section id="introduction" className="relative isolate scroll-mt-16 overflow-hidden py-28">
+    <section
+      id="introduction"
+      className="relative isolate scroll-mt-16 overflow-hidden py-16 sm:py-20 md:py-28"
+    >
       <div className="pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(50%_50%_at_50%_0%,black,transparent)] opacity-30 dark:opacity-50">
         <div className="absolute inset-x-0 top-[-10rem] flex justify-center blur-3xl">
           <div className="h-[28rem] w-[72rem] bg-gradient-to-r from-indigo-400 to-fuchsia-400 opacity-30 dark:from-indigo-900/70 dark:to-fuchsia-900/70"></div>
@@ -16,7 +19,7 @@ const Introduction: React.FC = () => {
           {/* Profile picture placeholder */}
           <div className="mx-auto text-center md:text-left">
             {/* Row: Profile picture next to H1 */}
-            <div className="flex items-center justify-center gap-6 md:justify-start">
+            <div className="flex flex-col items-center justify-center gap-4 text-center sm:gap-6 md:flex-row md:items-center md:justify-start md:text-left">
               <div className="flex-shrink-0">
                 <div className="animate-slide-up h-28 w-28 overflow-hidden rounded-full ring-4 ring-white sm:h-36 sm:w-36 md:h-44 md:w-44 dark:ring-slate-900">
                   <img
@@ -28,7 +31,7 @@ const Introduction: React.FC = () => {
                   />
                 </div>
               </div>
-              <h1 className="animate-slide-up text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl dark:text-slate-100">
+              <h1 className="animate-slide-up text-3xl font-extrabold tracking-tight text-slate-900 sm:text-5xl md:text-6xl dark:text-slate-100">
                 Building robust, scalable apps with .NET and modern web tech
               </h1>
             </div>
@@ -37,7 +40,7 @@ const Introduction: React.FC = () => {
             {portfolioData.introduction.map((text, idx) => (
               <p
                 key={idx}
-                className={`animate-slide-up ${idx === 0 ? 'mt-6' : 'mt-3'} text-base leading-8 font-normal text-slate-600 sm:text-lg dark:text-slate-400`}
+                className={`animate-slide-up ${idx === 0 ? 'mt-6' : 'mt-3'} text-left text-base leading-8 font-normal text-slate-600 sm:text-lg dark:text-slate-400`}
               >
                 {text}
               </p>
