@@ -1,69 +1,73 @@
-# React + TypeScript + Vite
+## DreamBig Portfolio (Terry Chen)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern, accessible portfolio built with React, Vite, and Tailwind CSS. It showcases projects, experience, and education with smooth, keyboard-first navigation and dark mode.
 
-Currently, two official plugins are available:
+### Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19 + Vite 7 + TypeScript
+- Tailwind CSS v4 (class-based dark mode)
+- Responsive layout and pagination
+- Accessible navigation (skip link, focus-visible outlines, ARIA labels)
+- Reduced motion support and proper section scroll offset
+- SEO essentials: meta description, robots.txt, social tags
 
-## Expanding the ESLint configuration
+### Accessibility (A11y)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Keyboard-first: skip link to main content, anchor-based section nav, clear focus styles
+- Screen readers: landmarks, descriptive aria-labels, polite live region for pagination changes
+- Reduced motion: animations disabled when prefers-reduced-motion is set
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Performance
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Third-party chat loaded on idle/first interaction to reduce unused JS and improve bfcache
+- Inline SVG icons (no icon font)
+- Long-term caching for static assets (Firebase Hosting headers)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Getting started
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. Prerequisites: Node 18+ (LTS) and pnpm/npm/yarn
+2. Install dependencies
+   - npm install
+3. Run dev server
+   - npm run dev
+4. Build for production
+   - npm run build
+5. Preview production build
+   - npm run preview
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Scripts
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- dev: start Vite dev server
+- build: type-check and build
+- preview: preview production build
+- lint: run ESLint
+- format / format:check: Prettier
+
+### Deploy (Firebase Hosting)
+
+This repo is configured for Firebase Hosting.
+
+1. Build the app
+   - npm run build
+2. Deploy (requires Firebase CLI and project setup)
+   - firebase deploy --only hosting
+
+Headers in `firebase.json` set long-term caching for JS/CSS/images and no-cache for index.html.
+
+### Project structure
+
+- public/ — static assets (robots.txt, humans.txt)
+- src/ — application code
+  - components/ — UI components
+  - context/ — Theme provider
+  - data/ — portfolio content
+
+### Customization
+
+- Edit `src/data/portfolioData.ts` to update content
+- Update meta tags in `index.html` (title/description/social)
+- Adjust theme and styles in `src/index.css`
+
+### License
+
+This project is provided as-is for personal portfolio use.
