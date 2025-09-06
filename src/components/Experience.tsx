@@ -3,7 +3,7 @@ import { portfolioData } from '../data/portfolioData';
 
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="py-24">
+    <section id="experience" className="scroll-mt-16 py-24">
       <div className="mx-auto max-w-6xl px-6">
         <h2 className="mb-12 text-center text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl dark:text-slate-100">
           Experience

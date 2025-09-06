@@ -35,11 +35,15 @@ const Projects: React.FC = () => {
   const visibleProjects = projects.slice(start, start + itemsPerPage);
 
   return (
-    <section id="projects" className="bg-slate-50 py-24 dark:bg-slate-900/50">
+    <section id="projects" className="scroll-mt-16 bg-slate-50 py-24 dark:bg-slate-900/50">
       <div className="mx-auto max-w-6xl px-6">
         <h2 className="mb-12 text-center text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl dark:text-slate-100">
           Projects
         </h2>
+        {/* SR-only live region to announce page changes */}
+        <p className="sr-only" aria-live="polite" aria-atomic="true">
+          Showing projects page {page + 1} of {totalPages}.
+        </p>
         {/* Single row, paginated (no horizontal scroll) */}
         <div className="flex w-full items-stretch justify-center gap-6 px-3 sm:px-4 md:px-6">
           {visibleProjects.map((project, index) => (
@@ -69,9 +73,10 @@ const Projects: React.FC = () => {
               </div>
               <a
                 href={project.link}
-                className="mt-auto inline-flex items-center gap-2 self-end text-indigo-600 transition hover:gap-2.5 dark:text-indigo-400"
+                className="mt-auto inline-flex items-center gap-2 self-end text-indigo-600 transition hover:gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 dark:text-indigo-400"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`View ${project.title} on GitHub (opens in a new tab)`}
               >
                 View on
                 <svg
@@ -94,7 +99,7 @@ const Projects: React.FC = () => {
             <button
               type="button"
               aria-label="Previous page"
-              className="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition enabled:hover:bg-slate-50 disabled:opacity-40 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:enabled:hover:bg-slate-700"
+              className="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 enabled:hover:bg-slate-50 disabled:opacity-40 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:enabled:hover:bg-slate-700"
               onClick={() => setPage((p) => Math.max(0, p - 1))}
               disabled={page === 0}
             >
@@ -106,20 +111,26 @@ const Projects: React.FC = () => {
                   key={i}
                   type="button"
                   aria-label={`Go to page ${i + 1}`}
-                  className={
-                    'h-2.5 w-2.5 rounded-full transition ' +
-                    (i === page
-                      ? 'bg-indigo-600 dark:bg-indigo-400'
-                      : 'bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-500')
-                  }
+                  aria-current={i === page ? 'page' : undefined}
+                  className="inline-flex size-12 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                   onClick={() => setPage(i)}
-                />
+                >
+                  <span
+                    aria-hidden="true"
+                    className={
+                      'h-2.5 w-2.5 rounded-full transition ' +
+                      (i === page
+                        ? 'bg-indigo-600 dark:bg-indigo-400'
+                        : 'bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-500')
+                    }
+                  />
+                </button>
               ))}
             </div>
             <button
               type="button"
               aria-label="Next page"
-              className="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition enabled:hover:bg-slate-50 disabled:opacity-40 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:enabled:hover:bg-slate-700"
+              className="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 enabled:hover:bg-slate-50 disabled:opacity-40 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:enabled:hover:bg-slate-700"
               onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
               disabled={page === totalPages - 1}
             >
