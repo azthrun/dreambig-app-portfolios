@@ -1,0 +1,35 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const base = import.meta.env.BASE_URL;
+const current = Astro.url.pathname;
+
+// Add entries as pages land; every link here must resolve (the crawl test follows them).
+const nav = [{ href: base, label: 'Home' }];
+---
+
+<header class="border-b border-line">
+  <div class="mx-auto flex max-w-content items-center justify-between gap-4 px-gutter py-4">
+    <a href={base} class="font-serif text-xl font-semibold tracking-tight text-ink">
+      Terry Chen
+    </a>
+    <div class="flex items-center gap-2">
+      <nav aria-label="Primary">
+        <ul class="flex items-center gap-1">
+          {nav.map(({ href, label }) => (
+            <li>
+              <a
+                href={href}
+                aria-current={current === href ? 'page' : undefined}
+                class="rounded-md px-3 py-2 text-sm text-muted hover:text-ink aria-[current=page]:text-ink"
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <ThemeToggle />
+    </div>
+  </div>
+</header>
