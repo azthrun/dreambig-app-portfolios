@@ -2,14 +2,10 @@ import { expect, type APIRequestContext, type Page } from '@playwright/test';
 import { basePath, origin } from '../playwright.config';
 
 // Entry points a visitor or crawler can reach directly. Everything else is discovered by crawling.
-export const routes = ['./', 'resume/', 'robots.txt', 'humans.txt'];
+export const routes = ['./', 'work/sourcegen-dapper/', 'resume/', 'robots.txt', 'humans.txt'];
 const pageRoutes = routes.filter((route) => route.endsWith('/'));
 
 export const siteUrl = (path: string) => new URL(path, `${origin}${basePath}`).href;
-
-// Linked files that are committed in a later ticket, so the crawl skips them until they land.
-// Remove the résumé PDF once it is exported and committed.
-export const pendingAssets = [siteUrl('terry-chen-resume.pdf')];
 
 async function linkedUrls(page: Page): Promise<string[]> {
   const urls = await page.$$eval(
@@ -38,8 +34,7 @@ export async function crawlSite(page: Page, request: APIRequestContext): Promise
     visited.push(url);
 
     for (const linked of await linkedUrls(page)) {
-      if (new URL(linked).origin !== origin || seen.has(linked) || pendingAssets.includes(linked))
-        continue;
+      if (new URL(linked).origin !== origin || seen.has(linked)) continue;
       seen.add(linked);
 
       expect(

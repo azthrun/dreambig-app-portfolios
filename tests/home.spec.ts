@@ -18,6 +18,21 @@ test('hero shows a headshot and an impact-focused intro', async ({ page }) => {
   await expect(page.getByRole('main')).toContainText(/senior software engineer/i);
 });
 
+test('featured case studies lead to their full write-ups', async ({ page }) => {
+  await page.goto('./');
+
+  const featured = page.getByRole('region', { name: 'Featured work' });
+  const entry = featured.getByRole('listitem').filter({
+    has: page.getByRole('heading', { name: 'DreamBig.SourceGen.Dapper' }),
+  });
+  await expect(entry).toHaveCount(1);
+  await expect(entry).toContainText(/Dapper/);
+
+  await entry.getByRole('link', { name: 'DreamBig.SourceGen.Dapper' }).click();
+  await expect(page).toHaveURL(/\/work\/sourcegen-dapper\/$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('DreamBig.SourceGen.Dapper');
+});
+
 test('experience timeline lists each role with its top three highlights', async ({ page }) => {
   await page.goto('./');
 
