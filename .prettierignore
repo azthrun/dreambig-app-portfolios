@@ -1,6 +1,8 @@
 # Build outputs
 /dist
-/.vite
+/.astro
+/test-results
+/playwright-report
 
 # Dependencies
 node_modules
