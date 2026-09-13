@@ -42,8 +42,15 @@ Tests exercise the built site only as a visitor or crawler sees it. `scripts/ser
 
 - every route returns 200 under the base path
 - every internal link and asset resolves
-- no requests go to third-party origins
+- no requests go to third-party origins (fonts are self-hosted)
 - Lighthouse CI audits exactly the pages the crawler reaches
+- axe-core finds zero violations on every page, in light and dark
+- the skip link comes first and focuses main; every interactive element shows a focus ring; no keyboard traps
+- first load follows the system theme, the toggle overrides it and survives a reload, and the theme
+  class is set before `<body>` is parsed
+- with reduced motion emulated nothing animates, transitions or scrolls smoothly
+- no page scrolls horizontally at 360px wide
+- the only JavaScript is the inline pre-paint theme script and the theme toggle
 
 ### Lighthouse
 
@@ -66,8 +73,10 @@ One-time repository setup (manual):
 
 - `public/` — static files copied as-is (robots.txt, humans.txt, logo)
 - `src/pages/` — one file per route
-- `src/layouts/` — page shell (head, meta)
-- `src/styles/` — global CSS
+- `src/layouts/` — page shell (head, meta, pre-paint theme script, skip link, header, main, footer)
+- `src/components/` — header, footer, theme toggle
+- `src/assets/` — images optimised at build time (headshot, DreamBig mark)
+- `src/styles/` — global CSS and design tokens (colors, fonts, type scale, spacing)
 - `src/data/` — profile content
 - `tests/` — Playwright suite
 - `scripts/` — local tooling

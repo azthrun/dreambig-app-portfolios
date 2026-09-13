@@ -1,4 +1,101 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/newsreader';
 
 /* Class-based dark mode in Tailwind v4 */
 @custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens, defined once. Colors are light-theme values; .dark below overrides the same
+ * variables, so utilities like `text-ink` and `bg-paper` work in both themes without `dark:`.
+ * Contrast (WCAG AA needs 4.5:1 for text), worst case against subtle:
+ *   light: ink 14.4, muted 6.8, accent 6.0   dark: ink 13.3, muted 7.7, accent 8.2
+ */
+@theme {
+  --color-paper: #fbfaf7;
+  --color-subtle: #f1eee8;
+  --color-line: #dcd7cd;
+  --color-ink: #1b1e23;
+  --color-muted: #4a525d;
+  --color-accent: #0f6466;
+
+  --font-serif: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
+  --font-sans:
+    'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Type scale (minor third, 1.2) */
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.7;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.6;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 1.35;
+  --text-2xl: 1.8rem;
+  --text-2xl--line-height: 1.25;
+  --text-3xl: 2.16rem;
+  --text-3xl--line-height: 1.15;
+  --text-4xl: 2.6rem;
+  --text-4xl--line-height: 1.1;
+
+  /* Spacing: Tailwind's 0.25rem step, plus the page gutter, section rhythm and reading width */
+  --spacing: 0.25rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-section: 5rem;
+  --container-content: 48rem;
+}
+
+.dark {
+  --color-paper: #121416;
+  --color-subtle: #1c1f22;
+  --color-line: #32373d;
+  --color-ink: #e9e6e0;
+  --color-muted: #aab2bb;
+  --color-accent: #6cc5bf;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    @apply bg-paper text-ink font-sans text-base antialiased;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-serif font-medium tracking-tight;
+  }
+
+  a,
+  button {
+    transition-property: color, background-color, border-color;
+    transition-duration: 150ms;
+  }
+
+  /* One focus style for every interactive element */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

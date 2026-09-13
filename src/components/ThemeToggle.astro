@@ -1,0 +1,54 @@
+---
+// The only interactive JavaScript on the site. Inline so it runs as soon as the button is parsed,
+// labelling it for the theme the pre-paint script in BaseLayout already applied.
+---
+
+<button
+  type="button"
+  id="theme-toggle"
+  class="inline-flex size-10 items-center justify-center rounded-full text-muted hover:bg-subtle hover:text-ink"
+  aria-label="Switch to dark theme"
+>
+  <svg
+    class="size-5 dark:hidden"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    aria-hidden="true"
+  >
+    <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"></path>
+  </svg>
+  <svg
+    class="hidden size-5 dark:block"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+  </svg>
+</button>
+
+<script is:inline data-theme-script="toggle">
+  (function () {
+    var root = document.documentElement;
+    var button = document.getElementById('theme-toggle');
+    function label() {
+      var next = root.classList.contains('dark') ? 'light' : 'dark';
+      button.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+    }
+    label();
+    button.addEventListener('click', function () {
+      var dark = root.classList.toggle('dark');
+      try {
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+      } catch (e) {}
+      label();
+    });
+  })();
+</script>
