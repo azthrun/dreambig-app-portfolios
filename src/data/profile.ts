@@ -34,8 +34,7 @@ export const profile: Profile = {
     "I'm a senior software engineer with more than ten years of building .NET, cloud-native and modern web applications. I keep public-facing sites that serve millions of college students running reliably, lead the move of legacy systems onto Azure and containers, and help teams ship better code through architecture, mentoring and review.",
     'Outside work I build open-source and home projects, keep up with where the industry is heading, and spend time with my family, usually with a good cup of coffee.',
   ],
-  // TODO(Terry): replace with the dedicated email alias before publishing.
-  email: 'hello@example.com',
+  email: 'sterryc1986@gmail.com',
   linkedIn: 'https://www.linkedin.com/in/azthrunzalao0o/',
   experience: [
     {
