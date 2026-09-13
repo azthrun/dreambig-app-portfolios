@@ -1,25 +1,48 @@
 ---
-// Minimal résumé so Home's link resolves; print styles and the PDF come with the résumé page work.
+// Full experience and education, rendered from the same profile data as Home. Printing this page
+// produces the paper résumé: screen-only chrome is hidden and colors fall back to black and grey on white.
 import { profile } from '../../data/profile';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+// Exported from this page and committed in a follow-up ticket; tests/crawl.ts skips it until then.
+const pdfUrl = `${base}terry-chen-resume.pdf`;
+const linkedInLabel = profile.linkedIn.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, '');
 ---
 
 <BaseLayout
   title={`Résumé · ${profile.name}`}
   description={`Full experience and education of ${profile.name}, senior software engineer.`}
 >
-  <div class="mx-auto max-w-content px-gutter py-section">
+  <div class="mx-auto max-w-content px-gutter py-section print:max-w-none print:p-0">
     <h1 class="text-4xl">Résumé</h1>
     <p class="mt-2 text-lg text-muted">
       {profile.name} · {profile.headline}
     </p>
+    <ul class="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-sm">
+      <li>
+        <a href={`mailto:${profile.email}`} class="text-accent underline underline-offset-4">
+          {profile.email}
+        </a>
+      </li>
+      <li class="break-all">
+        <a href={profile.linkedIn} class="text-accent underline underline-offset-4">
+          LinkedIn: {linkedInLabel}
+        </a>
+      </li>
+    </ul>
+    <p class="mt-6 print:hidden">
+      <a href={pdfUrl} download class="text-accent underline underline-offset-4">
+        Download the résumé (PDF)
+      </a>
+    </p>
 
-    <section aria-labelledby="experience-heading" class="mt-12">
+    <section aria-labelledby="experience-heading" class="mt-12 print:mt-8">
       <h2 id="experience-heading" class="text-2xl">
         Experience
       </h2>
       {profile.experience.map(({ role, company, location, period, highlights }) => (
-        <article class="mt-8">
+        <article class="mt-8 print:mt-6 print:break-inside-avoid">
           <h3 class="text-xl">{role}</h3>
           <p class="mt-1 text-sm text-muted">
             {company}, {location} · {period}
@@ -33,12 +56,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       ))}
     </section>
 
-    <section aria-labelledby="education-heading" class="mt-12">
+    <section aria-labelledby="education-heading" class="mt-12 print:mt-8">
       <h2 id="education-heading" class="text-2xl">
         Education
       </h2>
       {profile.education.map(({ degree, institution, period, details }) => (
-        <article class="mt-8">
+        <article class="mt-8 print:mt-6 print:break-inside-avoid">
           <h3 class="text-xl">{degree}</h3>
           <p class="mt-1 text-sm text-muted">
             {institution} · {period}

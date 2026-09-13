@@ -41,7 +41,7 @@ Tests exercise the built site only as a visitor or crawler sees it. `scripts/ser
 `dist/` under the base path the way GitHub Pages does (no SPA fallback), and Playwright checks that:
 
 - every route returns 200 under the base path
-- every internal link and asset resolves
+- every internal link and asset resolves (except files not committed yet, listed in `tests/crawl.ts`)
 - no requests go to third-party origins (fonts are self-hosted)
 - Lighthouse CI audits exactly the pages the crawler reaches
 - axe-core finds zero violations on every page, in light and dark
@@ -51,6 +51,8 @@ Tests exercise the built site only as a visitor or crawler sees it. `scripts/ser
 - with reduced motion emulated nothing animates, transitions or scrolls smoothly
 - no page scrolls horizontally at 360px wide
 - the only JavaScript is the inline pre-paint theme script and the theme toggle
+- the résumé renders all profile data, and printing it hides screen-only chrome and prints dark
+  grey-scale text in either theme
 
 ### Lighthouse
 
