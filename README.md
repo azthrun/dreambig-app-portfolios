@@ -25,6 +25,7 @@ The site is being rebuilt (see the v1 redesign spec, issue #5). Right now it is 
 - `preview`: preview the production build
 - `typecheck`: run `astro check`
 - `test`: run the Playwright suite against `dist/` (run `npm run build` first; `npx playwright install chromium` once)
+- `lighthouse`: run Lighthouse CI against `dist/` (run `npm run build` first; needs Chrome, and on Apple Silicon an arm64 Node)
 - `lint`: run ESLint
 - `format` / `format:check`: Prettier
 
@@ -42,11 +43,19 @@ Tests exercise the built site only as a visitor or crawler sees it. `scripts/ser
 - every route returns 200 under the base path
 - every internal link and asset resolves
 - no requests go to third-party origins
+- Lighthouse CI audits exactly the pages the crawler reaches
+
+### Lighthouse
+
+`lighthouserc.cjs` audits every page in `dist/` (each `index.html`) with Lighthouse's mobile preset, best
+of 3 runs, and fails on accessibility < 100, SEO < 100 or performance < 95. Pages are discovered from
+the build, so new pages need no config changes; a Playwright test checks the list matches every page
+the crawler reaches. Reports land in `.lighthouseci/`.
 
 ### Deploy
 
-`.github/workflows/pages.yml` runs on every push to `develop`: install → build → test → deploy to
-GitHub Pages. A failing test blocks the deploy.
+`.github/workflows/pages.yml` runs on every push to `develop`: install → build → test → Lighthouse CI →
+deploy to GitHub Pages. A failing test or Lighthouse threshold blocks the deploy.
 
 One-time repository setup (manual):
 

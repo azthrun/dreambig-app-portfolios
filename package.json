@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "typecheck": "astro check",
     "test": "playwright test",
+    "lighthouse": "lhci autorun",
     "lint": "eslint .",
     "format": "prettier --cache --write .",
     "format:check": "prettier --check ."
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@eslint/js": "^9.33.0",
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.63.0",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^24.13.4",
