@@ -1,12 +1,83 @@
 ---
+import { Image } from 'astro:assets';
+import headshot from '../assets/profile.webp';
+import { profile } from '../data/profile';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
-  title="Terry Chen"
-  description="Terry Chen is a senior software engineer building .NET, cloud-native and modern web applications."
+  title={profile.name}
+  description={`${profile.name} is a senior software engineer building .NET, cloud-native and modern web applications.`}
 >
   <div class="mx-auto max-w-content px-gutter py-section">
-    <h1 class="text-4xl">Terry Chen</h1>
+    <section aria-labelledby="intro-heading">
+      <Image
+        src={headshot}
+        alt={`Portrait of ${profile.name}`}
+        width={112}
+        densities={[1, 2]}
+        loading="eager"
+        class="size-28 rounded-full object-cover"
+      />
+      <h1 id="intro-heading" class="mt-8 text-4xl">
+        {profile.name}
+      </h1>
+      <p class="mt-2 text-lg text-muted">{profile.headline}</p>
+      {profile.intro.map((paragraph) => (
+        <p class="mt-6">{paragraph}</p>
+      ))}
+    </section>
+
+    <section aria-labelledby="experience-heading" class="mt-section">
+      <h2 id="experience-heading" class="text-2xl">
+        Experience
+      </h2>
+      <ol class="mt-8 space-y-10 border-l border-line">
+        {profile.experience.map(({ role, company, location, period, highlights }) => (
+          <li class="relative pl-6">
+            <span
+              class="absolute top-2.5 -left-[5px] size-2.5 rounded-full bg-accent"
+              aria-hidden="true"
+            />
+            <h3 class="text-xl">{role}</h3>
+            <p class="mt-1 text-sm text-muted">
+              {company}, {location} · {period}
+            </p>
+            <ul class="mt-4 list-disc space-y-2 pl-5 marker:text-muted">
+              {highlights.slice(0, 3).map((highlight) => (
+                <li>{highlight}</li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section aria-labelledby="contact-heading" class="mt-section">
+      <h2 id="contact-heading" class="text-2xl">
+        Contact
+      </h2>
+      <p class="mt-4">Hiring for a senior engineering role? I'd like to hear about it.</p>
+      <ul class="mt-6 space-y-3">
+        <li>
+          Email:
+          <a href={`mailto:${profile.email}`} class="text-accent underline underline-offset-4">
+            {profile.email}
+          </a>
+        </li>
+        <li>
+          <a href={profile.linkedIn} class="text-accent underline underline-offset-4">
+            {profile.name} on LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href={`${base}resume/`} class="text-accent underline underline-offset-4">
+            View the full résumé
+          </a>
+        </li>
+      </ul>
+    </section>
   </div>
 </BaseLayout>
