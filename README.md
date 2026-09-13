@@ -75,7 +75,7 @@ One-time repository setup (manual):
 
 ### Project structure
 
-- `public/` — static files copied as-is (robots.txt, humans.txt, logo)
+- `public/` — static files copied as-is (robots.txt, humans.txt, favicon.ico, apple-touch-icon.png, résumé PDF)
 - `src/pages/` — one file per route
 - `src/layouts/` — page shell (head, meta, pre-paint theme script, skip link, header, main, footer)
 - `src/components/` — header, footer, theme toggle
