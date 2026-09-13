@@ -1,0 +1,55 @@
+---
+// Minimal résumé so Home's link resolves; print styles and the PDF come with the résumé page work.
+import { profile } from '../../data/profile';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={`Résumé · ${profile.name}`}
+  description={`Full experience and education of ${profile.name}, senior software engineer.`}
+>
+  <div class="mx-auto max-w-content px-gutter py-section">
+    <h1 class="text-4xl">Résumé</h1>
+    <p class="mt-2 text-lg text-muted">
+      {profile.name} · {profile.headline}
+    </p>
+
+    <section aria-labelledby="experience-heading" class="mt-12">
+      <h2 id="experience-heading" class="text-2xl">
+        Experience
+      </h2>
+      {profile.experience.map(({ role, company, location, period, highlights }) => (
+        <article class="mt-8">
+          <h3 class="text-xl">{role}</h3>
+          <p class="mt-1 text-sm text-muted">
+            {company}, {location} · {period}
+          </p>
+          <ul class="mt-4 list-disc space-y-2 pl-5 marker:text-muted">
+            {highlights.map((highlight) => (
+              <li>{highlight}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </section>
+
+    <section aria-labelledby="education-heading" class="mt-12">
+      <h2 id="education-heading" class="text-2xl">
+        Education
+      </h2>
+      {profile.education.map(({ degree, institution, period, details }) => (
+        <article class="mt-8">
+          <h3 class="text-xl">{degree}</h3>
+          <p class="mt-1 text-sm text-muted">
+            {institution} · {period}
+          </p>
+          <ul class="mt-4 list-disc space-y-2 pl-5 marker:text-muted">
+            {details.map((detail) => (
+              <li>{detail}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </section>
+  </div>
+</BaseLayout>

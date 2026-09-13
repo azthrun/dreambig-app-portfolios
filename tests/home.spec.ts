@@ -8,3 +8,52 @@ test('home page introduces Terry Chen', async ({ page }) => {
   await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /Terry Chen/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Terry Chen');
 });
+
+test('hero shows a headshot and an impact-focused intro', async ({ page }) => {
+  await page.goto('./');
+
+  const headshot = page.getByRole('img', { name: /Terry Chen/ });
+  await expect(headshot).toBeVisible();
+  expect(await headshot.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+  await expect(page.getByRole('main')).toContainText(/senior software engineer/i);
+});
+
+test('experience timeline lists each role with its top three highlights', async ({ page }) => {
+  await page.goto('./');
+
+  const experience = page.getByRole('region', { name: 'Experience' });
+  for (const role of ['Senior Software Engineer', 'Software Analyst']) {
+    const entry = experience.getByRole('listitem').filter({
+      has: page.getByRole('heading', { name: role }),
+    });
+    await expect(entry).toHaveCount(1);
+    await expect(entry.getByRole('listitem')).toHaveCount(3);
+  }
+});
+
+test('contact block offers email, LinkedIn and the résumé', async ({ page }) => {
+  await page.goto('./');
+
+  const contact = page.getByRole('region', { name: 'Contact' });
+  const email = contact.getByRole('link', { name: /@/ });
+  await expect(email).toHaveAttribute('href', /^mailto:[^@\s]+@[^@\s]+$/);
+  expect(await email.getAttribute('href')).toBe(`mailto:${await email.textContent()}`);
+
+  await expect(contact.getByRole('link', { name: /LinkedIn/ })).toHaveAttribute(
+    'href',
+    /^https:\/\/www\.linkedin\.com\/in\//,
+  );
+
+  await contact.getByRole('link', { name: /résumé/i }).click();
+  await expect(page).toHaveURL(/\/resume\/$/);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/résumé/i);
+});
+
+test('home leaves education and retired projects to other pages', async ({ page }) => {
+  await page.goto('./');
+
+  const main = page.getByRole('main');
+  for (const absent of ['Education', 'Faist', 'Web3', 'Repository Generator']) {
+    await expect(main).not.toContainText(absent);
+  }
+});
