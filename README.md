@@ -1,72 +1,67 @@
 ## DreamBig Portfolio (Terry Chen)
 
-Modern, accessible portfolio built with React, Vite, and Tailwind CSS. It showcases projects, experience, and education with smooth, keyboard-first navigation and dark mode.
+Static portfolio site built with Astro and Tailwind CSS, hosted on GitHub Pages at
+<https://azthrun.github.io/dreambig-app-portfolios/>.
 
-### Features
+The site is being rebuilt (see the v1 redesign spec, issue #5). Right now it is a placeholder Home page.
 
-- React 19 + Vite 7 + TypeScript
+### Stack
+
+- Astro (static output) + TypeScript
 - Tailwind CSS v4 (class-based dark mode)
-- Responsive layout and pagination
-- Accessible navigation (skip link, focus-visible outlines, ARIA labels)
-- Reduced motion support and proper section scroll offset
-- SEO essentials: meta description, robots.txt, social tags
-
-### Accessibility (A11y)
-
-- Keyboard-first: skip link to main content, anchor-based section nav, clear focus styles
-- Screen readers: landmarks, descriptive aria-labels, polite live region for pagination changes
-- Reduced motion: animations disabled when prefers-reduced-motion is set
-
-### Performance
-
-- Third-party chat loaded on idle/first interaction to reduce unused JS and improve bfcache
-- Inline SVG icons (no icon font)
-- Long-term caching for static assets (Firebase Hosting headers)
+- Playwright browser tests against the production build
+- GitHub Actions → GitHub Pages
 
 ### Getting started
 
-1. Prerequisites: Node 18+ (LTS) and pnpm/npm/yarn
-2. Install dependencies
-   - npm install
-3. Run dev server
-   - npm run dev
-4. Build for production
-   - npm run build
-5. Preview production build
-   - npm run preview
+1. Prerequisites: Node 24 and npm
+2. `npm install`
+3. `npm run dev` — dev server at <http://localhost:4321/dreambig-app-portfolios/>
 
 ### Scripts
 
-- dev: start Vite dev server
-- build: type-check and build
-- preview: preview production build
-- lint: run ESLint
-- format / format:check: Prettier
+- `dev`: start the Astro dev server
+- `build`: type-check (`astro check`) and build static output to `dist/`
+- `preview`: preview the production build
+- `typecheck`: run `astro check`
+- `test`: run the Playwright suite against `dist/` (run `npm run build` first; `npx playwright install chromium` once)
+- `lint`: run ESLint
+- `format` / `format:check`: Prettier
 
-### Deploy (Firebase Hosting)
+### Base path
 
-This repo is configured for Firebase Hosting.
+The site is a GitHub Pages project site, so every URL lives under `/dreambig-app-portfolios/`
+(`base` in `astro.config.mjs`). Build internal links and asset URLs from `import.meta.env.BASE_URL`,
+never from `/`.
 
-1. Build the app
-   - npm run build
-2. Deploy (requires Firebase CLI and project setup)
-   - firebase deploy --only hosting
+### Tests
 
-Headers in `firebase.json` set long-term caching for JS/CSS/images and no-cache for index.html.
+Tests exercise the built site only as a visitor or crawler sees it. `scripts/serve-dist.mjs` serves
+`dist/` under the base path the way GitHub Pages does (no SPA fallback), and Playwright checks that:
+
+- every route returns 200 under the base path
+- every internal link and asset resolves
+- no requests go to third-party origins
+
+### Deploy
+
+`.github/workflows/pages.yml` runs on every push to `develop`: install → build → test → deploy to
+GitHub Pages. A failing test blocks the deploy.
+
+One-time repository setup (manual):
+
+1. Settings → Pages → Source: **GitHub Actions**
+2. Settings → Environments → `github-pages` → Deployment branches and tags: allow `develop`
 
 ### Project structure
 
-- public/ — static assets (robots.txt, humans.txt)
-- src/ — application code
-  - components/ — UI components
-  - context/ — Theme provider
-  - data/ — portfolio content
-
-### Customization
-
-- Edit `src/data/portfolioData.ts` to update content
-- Update meta tags in `index.html` (title/description/social)
-- Adjust theme and styles in `src/index.css`
+- `public/` — static files copied as-is (robots.txt, humans.txt, logo)
+- `src/pages/` — one file per route
+- `src/layouts/` — page shell (head, meta)
+- `src/styles/` — global CSS
+- `src/data/` — profile content
+- `tests/` — Playwright suite
+- `scripts/` — local tooling
 
 ### License
 
