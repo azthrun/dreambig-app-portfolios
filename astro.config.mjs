@@ -8,6 +8,13 @@ export default defineConfig({
   base: '/dreambig-app-portfolios/',
   trailingSlash: 'always',
   output: 'static',
+  markdown: {
+    // Code blocks carry both palettes as CSS variables; the case study page picks one per theme.
+    shikiConfig: {
+      themes: { light: 'github-light', dark: 'github-dark' },
+      defaultColor: false,
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
   },

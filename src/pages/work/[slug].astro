@@ -1,0 +1,135 @@
+---
+import { getCollection, render } from 'astro:content';
+import { profile } from '../../data/profile';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('work');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { title, summary, tech, repository, docs, status } = entry.data;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={`${title} · Case study · ${profile.name}`} description={summary}>
+  <article class="mx-auto max-w-content px-gutter py-section">
+    <p class="text-sm text-muted">Case study</p>
+    <h1 class="mt-2 text-4xl break-words">{title}</h1>
+    <dl class="mt-6 grid gap-x-4 gap-y-1 text-sm sm:grid-cols-[auto_1fr]">
+      <dt class="text-muted">Status</dt>
+      <dd>{status}</dd>
+      <dt class="text-muted">Tech</dt>
+      <dd>{tech.join(', ')}</dd>
+    </dl>
+    <div class="case-study mt-4">
+      <Content />
+
+      <!-- The template's closing section comes from frontmatter, so every entry links to its code. -->
+      <h2>Links</h2>
+      <ul>
+        <li>
+          <a href={repository}>Source code on GitHub</a>
+        </li>
+        {docs && (
+          <li>
+            <a href={docs}>Documentation</a>
+          </li>
+        )}
+      </ul>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  /* Markdown body: headings, lists, links and code share the design tokens. */
+  .case-study {
+    /* Long identifiers (package and type names) wrap instead of widening the page. */
+    overflow-wrap: break-word;
+  }
+
+  .case-study :global(h2) {
+    margin-top: 3rem;
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+  }
+
+  .case-study :global(h3) {
+    margin-top: 2rem;
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
+  }
+
+  .case-study :global(p),
+  .case-study :global(ul),
+  .case-study :global(ol),
+  .case-study :global(pre) {
+    margin-top: 1rem;
+  }
+
+  .case-study :global(ul) {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+
+  .case-study :global(ol) {
+    list-style: decimal;
+    padding-left: 1.25rem;
+  }
+
+  .case-study :global(li + li) {
+    margin-top: 0.5rem;
+  }
+
+  .case-study :global(li::marker) {
+    color: var(--color-muted);
+  }
+
+  .case-study :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .case-study :global(:not(pre) > code) {
+    overflow-wrap: anywhere;
+    border-radius: 0.25rem;
+    background-color: var(--color-subtle);
+    padding: 0.1em 0.3em;
+    font-size: 0.9em;
+  }
+
+  .case-study :global(pre) {
+    overflow-x: auto;
+    border: 1px solid var(--color-line);
+    border-radius: 0.375rem;
+    padding: 1rem;
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+
+  /* Shiki emits both palettes as variables (defaultColor: false); pick the one for the theme. */
+  .case-study :global(.astro-code),
+  .case-study :global(.astro-code span) {
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
+  }
+
+  :global(.dark) .case-study :global(.astro-code),
+  :global(.dark) .case-study :global(.astro-code span) {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
+
+  /* On paper, code uses the print palette from global.css like the rest of the page. */
+  @media print {
+    :global(.dark) .case-study :global(.astro-code),
+    :global(.dark) .case-study :global(.astro-code span),
+    .case-study :global(.astro-code),
+    .case-study :global(.astro-code span) {
+      color: var(--color-ink);
+      background-color: var(--color-paper);
+    }
+  }
+</style>

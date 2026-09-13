@@ -53,6 +53,8 @@ Tests exercise the built site only as a visitor or crawler sees it. `scripts/ser
 - the only JavaScript is the inline pre-paint theme script and the theme toggle
 - the résumé renders all profile data, and printing it hides screen-only chrome and prints dark
   grey-scale text in either theme
+- Home lists featured case studies, and each case study page follows the template and links to its
+  repository
 
 ### Lighthouse
 
@@ -80,6 +82,8 @@ One-time repository setup (manual):
 - `src/assets/` — images optimised at build time (headshot, DreamBig mark)
 - `src/styles/` — global CSS and design tokens (colors, fonts, type scale, spacing)
 - `src/data/` — profile content
+- `src/content/work/` — case studies, one Markdown file each, served at `/work/<file name>/`
+- `src/content.config.ts` — case study schema; an entry missing a required field fails the build
 - `tests/` — Playwright suite
 - `scripts/` — local tooling
 
