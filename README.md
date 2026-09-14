@@ -3,14 +3,19 @@
 Static portfolio site built with Astro and Tailwind CSS, hosted on GitHub Pages at
 <https://azthrun.github.io/dreambig-app-portfolios/>.
 
-The site is being rebuilt (see the v1 redesign spec, issue #5). Right now it is a placeholder Home page.
+Pages: Home (intro, featured case studies, experience, contact), a résumé page with a downloadable
+PDF, and one page per case study under `/work/`. The v1 redesign is specified in issue #5; the
+[portfolio case study](https://azthrun.github.io/dreambig-app-portfolios/work/portfolio/) explains
+the decisions behind it.
 
 ### Stack
 
-- Astro (static output) + TypeScript
-- Tailwind CSS v4 (class-based dark mode)
-- Playwright browser tests against the production build
-- GitHub Actions → GitHub Pages
+- Astro (static output, no client-side routing) + TypeScript
+- Markdown content collection for case studies; one typed profile module for Home and the résumé
+- Tailwind CSS v4 (class-based dark mode), self-hosted Newsreader and Inter
+- JavaScript limited to the inline pre-paint theme script and the theme toggle
+- Playwright + axe-core browser tests and Lighthouse CI against the production build
+- GitHub Actions → GitHub Pages, deployed from `develop`
 
 ### Getting started
 
@@ -41,7 +46,7 @@ Tests exercise the built site only as a visitor or crawler sees it. `scripts/ser
 `dist/` under the base path the way GitHub Pages does (no SPA fallback), and Playwright checks that:
 
 - every route returns 200 under the base path
-- every internal link and asset resolves (except files not committed yet, listed in `tests/crawl.ts`)
+- every internal link and asset (images, fonts, résumé PDF) resolves
 - no requests go to third-party origins (fonts are self-hosted)
 - Lighthouse CI audits exactly the pages the crawler reaches
 - axe-core finds zero violations on every page, in light and dark
@@ -55,6 +60,16 @@ Tests exercise the built site only as a visitor or crawler sees it. `scripts/ser
   grey-scale text in either theme
 - Home lists featured case studies, and each case study page follows the template and links to its
   repository
+
+Most checks crawl from the entry points in `tests/crawl.ts`, so new pages are covered once they are
+linked. Run a single file with `npx playwright test tests/work.spec.ts`.
+
+### Case studies
+
+Add a Markdown file to `src/content/work/`; it is served at `/work/<file name>/`. Frontmatter is
+checked by the schema in `src/content.config.ts` (`featured: true` and `order` put it on Home). The
+body follows the template: Summary → Problem → My role → Approach & key decisions → Tech → Outcome /
+current status; the Links section is rendered from frontmatter. No invented metrics.
 
 ### Lighthouse
 
