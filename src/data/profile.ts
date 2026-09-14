@@ -46,6 +46,8 @@ export const profile: Profile = {
         'Keep public-facing websites serving millions of college students running reliably, along with the REST APIs, message queues and scheduled jobs behind them.',
         'Lead modernization of legacy systems, migrating applications onto Azure and containerized environments.',
         'Design scalable Angular and .NET architecture for new applications.',
+        'Use Codex, Claude Code and GitHub Copilot throughout the AI-driven development lifecycle (AIDLC), from requirements and design through implementation, testing and code review.',
+        'Apply AI coding agents to legacy modernization work, speeding up code analysis, refactoring and test coverage while keeping every change under human review.',
         'Mentor junior developers to raise team velocity and code quality.',
         'Conduct thorough code reviews to uphold high development standards before deployment.',
         'Collaborate with business analysts and QA teams to deliver robust, production-ready solutions.',
