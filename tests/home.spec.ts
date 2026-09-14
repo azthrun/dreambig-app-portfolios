@@ -21,16 +21,27 @@ test('hero shows a headshot and an impact-focused intro', async ({ page }) => {
 test('featured case studies lead to their full write-ups', async ({ page }) => {
   await page.goto('./');
 
+  const caseStudies = [
+    { title: 'DreamBig.SourceGen.Dapper', slug: 'sourcegen-dapper', summary: /Dapper/ },
+    { title: 'Portfolio site redesign', slug: 'portfolio', summary: /Astro/ },
+  ];
   const featured = page.getByRole('region', { name: 'Featured work' });
-  const entry = featured.getByRole('listitem').filter({
-    has: page.getByRole('heading', { name: 'DreamBig.SourceGen.Dapper' }),
-  });
-  await expect(entry).toHaveCount(1);
-  await expect(entry).toContainText(/Dapper/);
+  await expect(featured.getByRole('heading', { level: 3 })).toHaveText(
+    caseStudies.map(({ title }) => title),
+  );
 
-  await entry.getByRole('link', { name: 'DreamBig.SourceGen.Dapper' }).click();
-  await expect(page).toHaveURL(/\/work\/sourcegen-dapper\/$/);
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('DreamBig.SourceGen.Dapper');
+  for (const { title, slug, summary } of caseStudies) {
+    await page.goto('./');
+    const entry = featured.getByRole('listitem').filter({
+      has: page.getByRole('heading', { name: title }),
+    });
+    await expect(entry).toHaveCount(1);
+    await expect(entry).toContainText(summary);
+
+    await entry.getByRole('link', { name: title }).click();
+    await expect(page).toHaveURL(new RegExp(`/work/${slug}/$`));
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(title);
+  }
 });
 
 test('experience timeline lists each role with its top three highlights', async ({ page }) => {
